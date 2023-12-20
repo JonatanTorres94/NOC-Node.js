@@ -36,7 +36,7 @@ export class CheckService implements checkServiceUseCase {
 
         } catch (error) {
             const log = new LogEntity({
-                message:`Service ${url} working`,
+                message:`Service ${error} is crash`,
                 level: LogServerityLevel.high,
                 createdAt: new Date(),
                 origin: 'chek-service.ts'    

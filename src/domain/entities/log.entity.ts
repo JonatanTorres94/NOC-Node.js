@@ -8,7 +8,7 @@ export enum LogServerityLevel {
 export interface LogEntityOptions {
     level: LogServerityLevel;
     message: string;
-    createdAt?: Date ;
+    createdAt?: Date;
     origin: string
 }
 
@@ -19,9 +19,9 @@ export class LogEntity {
     createdAt: Date;
     origin: string
 
-    constructor (options: LogEntityOptions){
+    constructor(options: LogEntityOptions) {
 
-        const {level, message,origin, createdAt = new Date()} = options
+        const { level, message, origin, createdAt = new Date() } = options
 
         this.message = message;
         this.level = level;
@@ -29,9 +29,9 @@ export class LogEntity {
         this.origin = origin;
     }
 
-    static fromJson = (json: string):LogEntity => {
-        
-        const {message, level, createdAt} = JSON.parse(json)
+    static fromJson = (json: string): LogEntity => {
+
+        const { message, level, createdAt } = JSON.parse(json)
 
         const log = new LogEntity({
             message,
@@ -39,9 +39,9 @@ export class LogEntity {
             createdAt,
             origin
         })
-        
 
-     
+
+
 
         // if(!message){
         //     throw new Error ('Message is Required')
@@ -51,5 +51,14 @@ export class LogEntity {
 
         return log
 
+    }
+
+    static fromObject = (object: { [key: string]: any }): LogEntity => {
+        const { message, level, createdAt, origin } = object;
+        const log = new LogEntity({
+            message, level, createdAt, origin
+        })
+
+        return log
     }
 }
